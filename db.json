@@ -1,7 +1,7 @@
 {
   "users": [
     {
-      "id": 1,
+      "id": "1",
       "name": "John Doe",
       "username": "johndoe",
       "email": "john.doe@example.com",
@@ -11,17 +11,18 @@
       "bio": "Hi! I'm **John**, a frontend developer passionate about Angular and UI architecture. I write about component design and performance tuning."
     },
     {
-      "id": 2,
+      "id": "2",
       "name": "Jane Smith",
       "username": "janesmith",
       "email": "jane.smith@example.com",
       "avatar": "https://api.dicebear.com/9.x/notionists/svg?seed=2",
       "role": "editor",
       "isBlocked": false,
-      "bio": "I'm **Jane**, a full-stack engineer with a focus on modern JavaScript frameworks. I love comparing tech stacks and building dev tools."
+      "bio": "I'm **Jane**, a full-stack engineer with a focus on modern JavaScript frameworks. I love comparing tech stacks and building dev tools.",
+      "blocked": false
     },
     {
-      "id": 3,
+      "id": "3",
       "name": "Mark Johnson",
       "username": "markj",
       "email": "mark.johnson@example.com",
@@ -31,7 +32,7 @@
       "bio": "**Mark here!** I enjoy breaking down complex topics like routing and state management for newer devs. Learning never stops!"
     },
     {
-      "id": 4,
+      "id": "4",
       "name": "Lisa Wong",
       "username": "lisaw",
       "email": "lisa.wong@example.com",
@@ -41,7 +42,7 @@
       "bio": "Hi, I'm **Lisa**, tech lead and performance advocate. I write tips and tricks for scalable Angular apps and review community posts."
     },
     {
-      "id": 5,
+      "id": "5",
       "name": "David Kim",
       "username": "davidk",
       "email": "david.kim@example.com",
@@ -53,39 +54,46 @@
   ],
   "blogs": [
     {
-      "id": 1,
-      "title": "Understanding Angular Lifecycle Hooks",
+      "id": "1",
+      "title": "Understanding Angular Lifecycle Hooksa",
       "date": "2023-04-22",
-      "authorId": 1,
+      "authorId": 2,
       "content": "Angular provides several **lifecycle hooks** that give you insight into key moments in a component's life. For example, use `ngOnInit()` for initialization logic and `ngOnDestroy()` for cleanup.\n\n```ts\nngOnInit() {\n  this.loadData();\n}\n\nngOnDestroy() {\n  this.subscription.unsubscribe();\n}\n```"
     },
     {
-      "id": 2,
+      "id": "2",
       "title": "Comparing Angular and React: What You Need to Know",
       "date": "2023-04-23",
       "authorId": 2,
       "content": "When comparing Angular and React, consider these factors:\n\n- **Learning Curve**: Angular is more opinionated, React more flexible.\n- **Performance**: Both are fast, but React often wins in raw speed.\n- **Community Support**: Both have large communities and great tooling.\n\nChoose based on **project needs** and **team familiarity**."
     },
     {
-      "id": 3,
+      "id": "3",
       "title": "Routing in Angular: A Beginner's Guide",
       "date": "2023-05-01",
       "authorId": 1,
       "content": "To add routing in Angular, follow these steps:\n\n1. Import `RouterModule` and define routes:\n\n```ts\nconst routes: Routes = [\n  { path: '', component: HomeComponent },\n  { path: 'about', component: AboutComponent }\n];\n```\n\n2. Add `<router-outlet></router-outlet>` in your template.\n\n3. Use `[routerLink]` to navigate:\n\n```html\n<a [routerLink]=\"['/about']\">About</a>\n```"
     },
     {
-      "id": 4,
+      "id": "4",
       "title": "Top 5 Tips to Improve Angular App Performance",
       "date": "2023-05-10",
       "authorId": 4,
       "content": "Here are five tips to boost your Angular app's performance:\n\n1. Use **lazy loading** for modules.\n2. Prefer `OnPush` change detection strategy.\n3. Avoid memory leaks by **unsubscribing**.\n4. Use **trackBy** with `*ngFor`.\n5. Minimize use of complex pipes in templates."
     },
     {
-      "id": 5,
+      "id": "5",
       "title": "Reactive Forms vs Template-driven Forms in Angular",
       "date": "2023-05-15",
       "authorId": 3,
       "content": "**Reactive Forms** give you more control with explicit and synchronous access to form data. **Template-driven Forms** are easier to set up for simpler use cases.\n\n```ts\n// Reactive form example\nform = new FormGroup({\n  name: new FormControl('')\n});\n```\n\nChoose based on **complexity** and **validation requirements**."
+    },
+    {
+      "id": 1755538379899,
+      "title": "xsxs",
+      "date": "2025-08-22",
+      "authorId": 10,
+      "content": "xsxsxsxsssssssssssssssssssssssss"
     }
   ]
 }

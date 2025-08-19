@@ -1,0 +1,21 @@
+<div class="mx-auto max-w-md px-4 py-12">
+  <h1 class="text-3xl font-bold mb-6">Sign in</h1>
+
+  @if (error()) {
+    <div class="mb-4 rounded-md bg-red-50 p-3 text-red-700">{{ error() }}</div>
+  }
+
+  <form [formGroup]="form" (ngSubmit)="onSubmit()" class="space-y-4">
+    <div>
+      <label class="block text-sm font-medium text-gray-700 mb-1">Email or Username</label>
+      <input type="text" formControlName="id"
+             class="w-full rounded-md border-gray-300 focus:border-blue-500 focus:ring-blue-500"
+             placeholder="alice@site.test or alice" />
+    </div>
+
+    <button type="submit" [disabled]="loading()"
+            class="rounded-lg bg-blue-600 px-4 py-2 text-white hover:bg-blue-700 disabled:opacity-60">
+      @if (!loading()) { Sign in } @else { Signing in… }
+    </button>
+  </form>
+</div>

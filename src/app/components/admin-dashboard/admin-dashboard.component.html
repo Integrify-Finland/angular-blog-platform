@@ -1,0 +1,112 @@
+<div class="mx-auto max-w-7xl px-4 py-8">
+  <h1 class="text-3xl font-bold mb-6">Admin Dashboard</h1>
+
+  <ng-container *ngIf="loading(); else loaded"></ng-container>
+
+  <ng-template #loaded>
+  
+    <div *ngIf="users().length === 0; else usersTable" class="text-gray-500">
+      No users found.
+    </div>
+
+    <ng-template #usersTable>
+      <div class="overflow-x-auto rounded-lg border border-gray-200 bg-white shadow">
+        <table class="min-w-full divide-y divide-gray-200">
+          <thead class="bg-gray-50">
+            <tr>
+              <th class="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wider text-gray-600">ID</th>
+              <th class="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wider text-gray-600">User</th>
+              <th class="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wider text-gray-600">Role</th>
+              <th class="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wider text-gray-600">Status</th>
+              <th class="px-4 py-3 text-right text-xs font-semibold uppercase tracking-wider text-gray-600">Actions</th>
+            </tr>
+          </thead>
+
+          <tbody class="divide-y divide-gray-100">
+            <tr *ngFor="let u of users()" class="hover:bg-gray-50">
+              <td class="px-4 py-3 text-sm text-gray-700">{{ u.id }}</td>
+
+              <td class="px-4 py-3">
+                <div class="flex items-center gap-3">
+                  <img [src]="u.avator" alt="" class="h-9 w-9 rounded-full object-cover" />
+                  <div>
+                    <div class="text-sm font-medium text-gray-900">
+                      {{ u.name }}
+                      <span class="text-gray-500">&#64;{{ u.username }}</span>
+                    </div>
+                    <div class="text-xs text-gray-600">{{ u.email }}</div>
+                    <div class="mt-1 text-xs text-gray-500 line-clamp-1">{{ u.bio }}</div>
+                  </div>
+                </div>
+              </td>
+
+              <td class="px-4 py-3 text-sm text-gray-700 uppercase">{{ u.role }}</td>
+
+              <td class="px-4 py-3 text-sm">
+                <span *ngIf="u.blocked; else activeBadge"
+                      class="inline-flex items-center rounded-full bg-red-50 px-2 py-0.5 text-red-700">
+                  Blocked
+                </span>
+                <ng-template #activeBadge>
+                  <span class="inline-flex items-center rounded-full bg-green-50 px-2 py-0.5 text-green-700">
+                    Active
+                  </span>
+                </ng-template>
+              </td>
+
+              <td class="px-4 py-3 text-right">
+                <ng-container *ngIf="confirmingId() === u.id; else actionButtons">
+                  <div class="inline-flex items-center gap-3">
+                    <span class="text-sm text-gray-700">Are you sure?</span>
+
+                    <button
+                      type="button"
+                      (click)="cancelConfirm()"
+                      class="rounded-md border border-gray-300 px-3 py-1 text-gray-700 hover:bg-gray-50"
+                    >
+                      Cancel
+                    </button>
+
+                    <button
+                      type="button"
+                      (click)="toggleBlock(u)"
+                      [disabled]="processingId() === u.id"
+                      class="rounded-md px-3 py-1 text-white disabled:opacity-60"
+                      [ngClass]="u.blocked ? 'bg-amber-600 hover:bg-amber-700' : 'bg-red-600 hover:bg-red-700'"
+                    >
+                      {{ processingId() === u.id
+                          ? (u.blocked ? 'Unblocking…' : 'Blocking…')
+                          : (u.blocked ? 'Unblock' : 'Block') }}
+                    </button>
+                  </div>
+                </ng-container>
+
+                <ng-template #actionButtons>
+                  <div class="inline-flex items-center gap-3">
+                    <button
+                      *ngIf="!u.blocked; else showUnblock"
+                      type="button"
+                      (click)="startConfirm(u.id)"
+                      class="text-red-600 hover:text-red-700"
+                    >
+                      Block
+                    </button>
+                    <ng-template #showUnblock>
+                      <button
+                        type="button"
+                        (click)="startConfirm(u.id)"
+                        class="text-amber-700 hover:text-amber-800"
+                      >
+                        Unblock
+                      </button>
+                    </ng-template>
+                  </div>
+                </ng-template>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </ng-template>
+  </ng-template>
+</div>

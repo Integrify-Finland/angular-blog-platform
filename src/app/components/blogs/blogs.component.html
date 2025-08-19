@@ -1,0 +1,36 @@
+<div class="container mx-auto p-6">
+  <h1 class="text-3xl font-bold mb-6">Latest Blogs</h1>
+
+  <div *ngIf="blogs().length === 0" class="text-gray-500">
+    Loading blogs...
+  </div>
+
+  <div *ngIf="blogs().length > 0" class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+    <article *ngFor="let blog of blogs()" class="bg-white shadow rounded-lg p-5 flex flex-col">
+      <h2 class="text-xl font-semibold mb-1">
+        <a [routerLink]="['/blogs', blog.id]" class="hover:underline">
+          {{ blog.title }}
+        </a>
+      </h2>
+
+      <div class="text-sm text-gray-500 mb-3">
+        <time [attr.datetime]="blog.date">{{ blog.date | date:'mediumDate' }}</time>
+        · Author #{{ blog.authorId }}
+      </div>
+
+      <p class="text-gray-700 flex-1">
+        {{ blog.content | slice:0:160 }}<ng-container *ngIf="blog.content.length > 160">…</ng-container>
+      </p>
+
+      <a
+        [routerLink]="['details', blog.id]"
+        class="mt-4 inline-flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition"
+      >
+        Read Details
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+          <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l5 5a.997.997 0 010 1.414l-5 5a1 1 0 01-1.414-1.414L13.586 11H4a1 1 0 110-2h9.586l-3.293-3.293a1 1 0 010-1.414z" clip-rule="evenodd"/>
+        </svg>
+      </a>
+    </article>
+  </div>
+</div>

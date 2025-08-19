@@ -1,0 +1,52 @@
+<form [formGroup]="blogForm" (ngSubmit)="onSubmit()" class="space-y-4">
+  <div>
+    <label class="block text-sm font-medium text-gray-700 mb-1">Title</label>
+    <input type="text" formControlName="title"
+           class="w-full rounded-md border-gray-300 focus:border-blue-500 focus:ring-blue-500"
+           placeholder="My awesome blog post" />
+    @if (blogForm.controls.title.touched && blogForm.controls.title.invalid) {
+      <p class="mt-1 text-sm text-red-600">Title is required (min 3 chars).</p>
+    }
+  </div>
+
+  <div class="grid gap-4 md:grid-cols-2">
+    <div>
+      <label class="block text-sm font-medium text-gray-700 mb-1">Date</label>
+      <input type="date" formControlName="date"
+             class="w-full rounded-md border-gray-300 focus:border-blue-500 focus:ring-blue-500" />
+      @if (blogForm.controls.date.touched && blogForm.controls.date.invalid) {
+        <p class="mt-1 text-sm text-red-600">Date is required.</p>
+      }
+    </div>
+
+    <div>
+      <label class="block text-sm font-medium text-gray-700 mb-1">Author ID</label>
+      <input type="number" min="1" formControlName="authorId"
+             class="w-full rounded-md border-gray-300 focus:border-blue-500 focus:ring-blue-500" placeholder="1" />
+      @if (blogForm.controls.authorId.touched && blogForm.controls.authorId.invalid) {
+        <p class="mt-1 text-sm text-red-600">Author ID must be at least 1.</p>
+      }
+    </div>
+  </div>
+
+  <div>
+    <label class="block text-sm font-medium text-gray-700 mb-1">Content</label>
+    <textarea rows="6" formControlName="content"
+              class="w-full rounded-md border-gray-300 focus:border-blue-500 focus:ring-blue-500"
+              placeholder="Write your post..."></textarea>
+    @if (blogForm.controls.content.touched && blogForm.controls.content.invalid) {
+      <p class="mt-1 text-sm text-red-600">Content is required (min 10 chars).</p>
+    }
+  </div>
+
+  <div class="flex items-center justify-end gap-3">
+    <button type="button" (click)="onCancel()"
+            class="rounded-lg border border-gray-300 px-4 py-2 text-gray-700 hover:bg-gray-50">
+      Cancel
+    </button>
+    <button type="submit" [disabled]="busy"
+            class="rounded-lg bg-blue-600 px-4 py-2 text-white hover:bg-blue-700 disabled:opacity-60">
+      @if (!busy) { <span>{{ submitLabel }}</span> } @else { <span>{{ submitLabel }}…</span> }
+    </button>
+  </div>
+</form>
